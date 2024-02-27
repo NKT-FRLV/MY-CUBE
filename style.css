@@ -1,0 +1,111 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  background-image: url(https://code.s3.yandex.net/web-code/images/dotted.svg);
+  min-block-size: 100vh;
+}
+
+label {
+  display: block;
+}
+
+label span {
+  display: block;
+  font-weight: 800;
+  font-size: 12px;
+}
+
+input[type='range'] {
+  background-color: transparent;
+  inline-size: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+input[type='range']:focus {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+input[type='range']::-webkit-slider-runnable-track {
+  border: none;
+  border-radius: 0;
+  background-color: #000;
+  cursor: pointer;
+  inline-size: 100%;
+  block-size: 10px;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  margin-block-start: -3px;
+  border: 1px solid #000;
+  border-radius: 0;
+  background-color: #fff;
+  cursor: pointer;
+  block-size: 16px;
+  inline-size: 26px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+input[type='range']::-moz-range-track {
+  border: none;
+  border-radius: 0;
+  background-color: #000;
+  cursor: pointer;
+  inline-size: 100%;
+  block-size: 10px;
+}
+
+input[type='range']::-moz-range-thumb {
+  box-sizing: border-box;
+  border: 1px solid #000;
+  border-radius: 0;
+  background-color: #fff;
+  cursor: pointer;
+  block-size: 16px;
+  inline-size: 26px;
+}
+
+input[type='range']:disabled::-webkit-slider-runnable-track {
+  opacity: 0.6;
+}
+
+input[type='range']:disabled::-moz-range-track {
+  background-color: rgb(0 0 0 / 0.6);
+}
+
+input[type='range']:disabled::-moz-range-thumb {
+  border-color: rgb(0 0 0 / 0.6);
+}
+
+.container {
+  flex-grow: 1;
+  inline-size: 100%;
+}
+
+.controls {
+  border-block-end: 1px solid #000;
+  padding: 24px;
+  background-color: #fff;
+}
+
+.view {
+  --cube-rotate-x: 0deg;
+  --cube-rotate-y: 0deg;
+
+  display: grid;
+  place-items: center;
+  padding: 60px;
+  overflow: hidden;
+  background-color: transparent;
+  transform-style: preserve-3d;
+  min-block-size: 60vh;
+}

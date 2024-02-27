@@ -1,0 +1,62 @@
+.cube {
+  --size: 300px;
+
+  width: var(--size);
+  height: var(--size);
+  transform: rotateX(var(--cube-rotate-x)) rotateY(var(--cube-rotate-y));
+  transform-style: preserve-3d;
+}
+
+.side {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: var(--size);
+  height: var(--size);
+  transform-origin: center;
+}
+
+.top {
+  background-color: rgb(253 36 175 / 0.8);
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  transform-origin: top center;
+  transform: rotateX(-90deg);
+}
+
+.right {
+  background-color: rgb(254 175 232 / 0.8);
+  inset-block-start: 0;
+  inset-inline-end: 0;
+  transform-origin: right center;
+  transform: rotateY(-90deg);
+}
+
+.bottom {
+  background-color: rgb(255 200 2 / 0.8);
+  inset-block-end: 0;
+  inset-inline-start: 0;
+  transform-origin: bottom center;
+  transform: rotateX(90deg);
+}
+
+.left {
+  background-color: rgb(128 217 148 / 0.8);
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  transform-origin: left center;
+  transform: rotateY(90deg);
+}
+
+.front {
+  background-color: rgb(95 13 238 / 0.8);
+  inset-block-start: 0;
+  inset-inline-start: 0;
+}
+
+.back {
+  background-color: rgb(109 193 253 / 0.8);
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  transform: translateZ(-300px);
+}
