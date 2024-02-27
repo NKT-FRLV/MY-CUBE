@@ -1,6 +1,6 @@
 .cube {
-  --size: 300px;
-
+  --size: 200px;
+  transform-origin: center center calc(var(--size) / -2);
   width: var(--size);
   height: var(--size);
   transform: rotateX(var(--cube-rotate-x)) rotateY(var(--cube-rotate-y));
@@ -58,5 +58,5 @@
   background-color: rgb(109 193 253 / 0.8);
   inset-block-start: 0;
   inset-inline-start: 0;
-  transform: translateZ(-300px);
+  transform: translateZ(calc(var(--size) * -1));
 }
