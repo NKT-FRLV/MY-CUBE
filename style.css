@@ -108,4 +108,16 @@ input[type='range']:disabled::-moz-range-thumb {
   background-color: transparent;
   transform-style: preserve-3d;
   min-block-size: 60vh;
+  mix-blend-mode: exclusion;
+}
+
+.fire-video {
+  position: absolute;
+  top: 130px;
+  left: 0;
+  object-position: center;
+  object-fit: cover;
+  max-inline-size: 100%;
+  min-block-size: 80vh;
+  mix-blend-mode: overlay;
 }

@@ -5,6 +5,7 @@
   height: var(--size);
   transform: rotateX(var(--cube-rotate-x)) rotateY(var(--cube-rotate-y));
   transform-style: preserve-3d;
+  
 }
 
 .side {
@@ -14,6 +15,7 @@
   width: var(--size);
   height: var(--size);
   transform-origin: center;
+  backface-visibility: hidden;
 }
 
 .top {
@@ -21,7 +23,7 @@
   inset-block-start: 0;
   inset-inline-start: 0;
   transform-origin: top center;
-  transform: rotateX(-90deg);
+  transform: rotateX(-90deg) rotateY(180deg) ;
 }
 
 .right {
@@ -29,7 +31,7 @@
   inset-block-start: 0;
   inset-inline-end: 0;
   transform-origin: right center;
-  transform: rotateY(-90deg);
+  transform: rotateY(-90deg) rotateX(180deg);
 }
 
 .bottom {
@@ -37,7 +39,7 @@
   inset-block-end: 0;
   inset-inline-start: 0;
   transform-origin: bottom center;
-  transform: rotateX(90deg);
+  transform: rotateX(90deg) rotateY(180deg);
 }
 
 .left {
@@ -45,7 +47,7 @@
   inset-block-start: 0;
   inset-inline-start: 0;
   transform-origin: left center;
-  transform: rotateY(90deg);
+  transform: rotateY(90deg) rotateX(180deg);
 }
 
 .front {
@@ -58,5 +60,5 @@
   background-color: rgb(109 193 253 / 0.8);
   inset-block-start: 0;
   inset-inline-start: 0;
-  transform: translateZ(calc(var(--size) * -1));
+  transform: translateZ(calc(var(--size) * -1)) rotateX(180deg) rotateZ(180deg);
 }
