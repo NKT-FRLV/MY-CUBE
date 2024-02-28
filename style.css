@@ -114,10 +114,10 @@ input[type='range']:disabled::-moz-range-thumb {
 .fire-video {
   position: absolute;
   top: 130px;
-  left: 0;
+  left: 50%;
+  transform: translate(-50%);
   object-position: center;
   object-fit: cover;
   max-inline-size: 100%;
   min-block-size: 80vh;
-  mix-blend-mode: overlay;
 }
