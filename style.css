@@ -5,7 +5,8 @@ body {
   align-items: center;
   margin: 0;
   font-family: 'Open Sans', sans-serif;
-  font-size: 18px;
+  font-size: 36px;
+  font-weight: bolder;
   background-image: url(https://code.s3.yandex.net/web-code/images/dotted.svg);
   min-block-size: 100vh;
 }
@@ -109,11 +110,25 @@ input[type='range']:disabled::-moz-range-thumb {
   transform-style: preserve-3d;
   min-block-size: 60vh;
   mix-blend-mode: exclusion;
+  animation: puls 1.5s ease infinite;
+   transform: perspective(1000px) scale3d(1, 1, 1) translateZ(100px) /*rotate3d(0deg, 0deg, 0deg) */;
+}
+
+@keyframes puls {
+  from {
+    transform: perspective(1000px) scale3d(1, 1, 1) translateZ(100px) /*rotate3d(0deg, 0deg, 0deg)*/ ;
+  }
+  50% {
+    transform: perspective(1000px) scale3d(1, 1, 2) translateZ(100px) /*rotate3d(360deg, 360deg, 360deg)*/ ;
+  }
+  to {
+     transform: perspective(1000px) scale3d(1, 1, 1) translateZ(100px) /*rotate3d(0deg, 0deg, 0deg)*/ ; 
+  }
 }
 
 .fire-video {
   position: absolute;
-  top: 130px;
+  top: 178px;
   left: 50%;
   transform: translate(-50%);
   object-position: center;
