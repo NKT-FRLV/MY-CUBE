@@ -31,10 +31,12 @@ cube.addEventListener('mousedown', (e) => {
   // Сохраняем начальные координаты мыши
   startX = e.clientX;
   startY = e.clientY;
+  // Добавляем обработчики событий для перемещения мыши к документу
+  document.addEventListener('mousemove', onMouseMove);
 });
 
-// Обработчик события перемещения мыши
-cube.addEventListener('mousemove', (e) => {
+// Функция обработки события перемещения мыши
+function onMouseMove(e) {
   // Проверяем, удерживается ли кнопка мыши
   if (isDragging) {
     // Вычисляем изменение позиции мыши
@@ -50,12 +52,17 @@ cube.addEventListener('mousemove', (e) => {
     cube.style.setProperty('--cube-rotate-x', `${rotateX + deltaY}deg`);
     cube.style.setProperty('--cube-rotate-y', `${rotateY + deltaX}deg`);
   }
-});
+}
 
 // Обработчик события отпускания кнопки мыши
-cube.addEventListener('mouseup', () => {
+document.addEventListener('mouseup', () => {
+  // Сохраняем текущую скорость вращения куба после отпускания мыши
+  rotationSpeedX = (rotationSpeedX || 0) + Math.random() * 2 - 1;
+  rotationSpeedY = (rotationSpeedY || 0) + Math.random() * 2 - 1;
   // Сбрасываем флаг в значение false
   isDragging = false;
+  // Удаляем обработчики событий для перемещения мыши с документа
+  document.removeEventListener('mousemove', onMouseMove);
 });
 
 
@@ -97,64 +104,4 @@ const decelerationRate = 0.95;
 const updateInterval = 1000 / 60;
 
 // Переменные для хранения скорости вращения куба
-let rotationSpeedX = 0;
-let rotationSpeedY = 0;
-
-// Функция для уменьшения скорости вращения куба
-function decelerateCube() {
-  // Проверяем, достигла ли скорость куба минимального значения
-  if (Math.abs(rotationSpeedX) < 0.1 && Math.abs(rotationSpeedY) < 0.1) {
-    // Если да, останавливаем интервальную функцию
-    clearInterval(decelerateInterval);
-  } else {
-    // Иначе уменьшаем скорость куба на коэффициент замедления
-    rotationSpeedX *= decelerationRate;
-    rotationSpeedY *= decelerationRate;
-    // Получаем текущие значения вращения куба
-    let rotateX = parseFloat(cube.style.getPropertyValue('--cube-rotate-x')) || 0;
-    let rotateY = parseFloat(cube.style.getPropertyValue('--cube-rotate-y')) || 0;
-    // Применяем изменения к вращению куба
-    cube.style.setProperty('--cube-rotate-x', `${rotateX + rotationSpeedX}deg`);
-    cube.style.setProperty('--cube-rotate-y', `${rotateY + rotationSpeedY}deg`);
-  }
-}
-
-// Обработчик события отпускания кнопки мыши или касания
-function stopRotation() {
-  // Перестаем отслеживать движение куба
-  isDragging = false;
-  // Запускаем интервальную функцию для замедления вращения
-  decelerateInterval = setInterval(decelerateCube, updateInterval);
-}
-
-// Добавляем обработчики событий для остановки вращения куба
-document.addEventListener('mouseup', stopRotation);
-document.addEventListener('touchend', stopRotation);
-
-// Обновляем скорость вращения куба при перемещении мыши или касания
-function updateRotationSpeed(e) {
-  // Получаем данные о перемещении
-  const deltaX = e.clientX - startX;
-  const deltaY = e.clientY - startY;
-  // Обновляем скорость вращения куба
-  rotationSpeedX = deltaX;
-  rotationSpeedY = deltaY;
-  // Сохраняем текущие координаты мыши
-  startX = e.clientX;
-  startY = e.clientY;
-}
-
-// Обработчик события перемещения мыши
-cube.addEventListener('mousemove', (e) => {
-  // Проверяем, удерживается ли кнопка мыши
-  if (isDragging) {
-    updateRotationSpeed(e);
-  }
-});
-
-// Обработчик события перемещения касания
-cube.addEventListener('touchmove', (e) => {
-  // Получаем данные о касании
-  const touch = e.touches[0];
-  updateRotationSpeed(touch);
-});
+let rotationSpeedX = 0
