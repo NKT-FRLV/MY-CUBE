@@ -159,7 +159,7 @@ cube.addEventListener('mouseup', () => {
   isDragging = false;
 });
 
-// Обработчик события отпускания пальца на сенсорном устройстве
+
 // Обработчик события отпускания пальца на сенсорном устройстве
 cube.addEventListener('touchend', () => {
   // Задаем максимальное значение скорости вращения
@@ -170,13 +170,15 @@ cube.addEventListener('touchend', () => {
   // Сбрасываем флаг в значение false
   isDragging = false;
 });
-// cube.addEventListener('touchend', () => {
-//   // Сохраняем текущую скорость вращения куба после отпускания пальца
-//   rotationSpeedX = (rotationSpeedX || 0) + Math.random() * 2 - 1;
-//   rotationSpeedY = (rotationSpeedY || 0) + Math.random() * 2 - 1;
-//   // Сбрасываем флаг в значение false
-//   isDragging = false;
-// });
+// Обработчик события отпускания пальца на сенсорном устройстве
+cube.addEventListener('touchend', () => {
+  // Сохраняем текущую скорость вращения куба после отпускания пальца
+  rotationSpeedX = (rotationSpeedX || 0) + Math.random() * 2 - 1;
+  rotationSpeedY = (rotationSpeedY || 0) + Math.random() * 2 - 1;
+  // Сбрасываем флаг в значение false
+  isDragging = false;
+});
+
 
 
 // КНОПКА  ПАДЕНИЯ МЯЧИКА
