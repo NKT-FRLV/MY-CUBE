@@ -7,7 +7,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-size: 36px;
   font-weight: bolder;
-  background-image: url(https://code.s3.yandex.net/web-code/images/dotted.svg);
+  background-image: url(./images/cover-image.png);
   min-block-size: 100vh;
 }
 
@@ -48,4 +48,7 @@ body {
   object-fit: cover;
   max-inline-size: 100%;
   min-block-size: 80vh;
+  border-radius: 40px;
+  opacity: 0.5;
+  box-shadow: 10px 10px 15px 15px #000, -10px -10px 15px 15px #000;
 }
