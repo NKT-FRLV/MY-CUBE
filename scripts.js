@@ -101,7 +101,7 @@ cube.addEventListener('touchmove', (e) => {
 // Коэффициент замедления (можно регулировать)
 const decelerationRate = 0.99;
 // Периодичность проверки ускорения (в миллисекундах)
-const updateInterval = (1000 / 60) * 1.5;
+const updateInterval = (1000 / 60) * 1.8;
 
 // Переменные для хранения скорости вращения куба
 let rotationSpeedX = 0;

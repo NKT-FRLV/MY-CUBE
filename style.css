@@ -11,93 +11,6 @@ body {
   min-block-size: 100vh;
 }
 
-label {
-  display: block;
-}
-
-label span {
-  display: block;
-  font-weight: 800;
-  font-size: 12px;
-}
-
-input[type='range'] {
-  background-color: transparent;
-  inline-size: 100%;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-input[type='range']:focus {
-  outline: 2px solid #000;
-  outline-offset: 2px;
-}
-
-input[type='range']::-webkit-slider-runnable-track {
-  border: none;
-  border-radius: 0;
-  background-color: #000;
-  cursor: pointer;
-  inline-size: 100%;
-  block-size: 10px;
-}
-
-input[type='range']::-webkit-slider-thumb {
-  margin-block-start: -3px;
-  border: 1px solid #000;
-  border-radius: 0;
-  background-color: #fff;
-  cursor: pointer;
-  block-size: 16px;
-  inline-size: 26px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-input[type='range']::-moz-range-track {
-  border: none;
-  border-radius: 0;
-  background-color: #000;
-  cursor: pointer;
-  inline-size: 100%;
-  block-size: 10px;
-}
-
-input[type='range']::-moz-range-thumb {
-  box-sizing: border-box;
-  border: 1px solid #000;
-  border-radius: 0;
-  background-color: #fff;
-  cursor: pointer;
-  block-size: 16px;
-  inline-size: 26px;
-}
-
-input[type='range']:disabled::-webkit-slider-runnable-track {
-  opacity: 0.6;
-}
-
-input[type='range']:disabled::-moz-range-track {
-  background-color: rgb(0 0 0 / 0.6);
-}
-
-input[type='range']:disabled::-moz-range-thumb {
-  border-color: rgb(0 0 0 / 0.6);
-}
-
-.container {
-  flex-grow: 1;
-  inline-size: 100%;
-}
-
-.controls {
-  border-block-end: 1px solid #000;
-  padding: 24px;
-  background-color: #fff;
-}
-
 .view {
   --cube-rotate-x: 0deg;
   --cube-rotate-y: 0deg;
@@ -108,9 +21,9 @@ input[type='range']:disabled::-moz-range-thumb {
   overflow: hidden;
   background-color: transparent;
   transform-style: preserve-3d;
-  min-block-size: 60vh;
+  min-block-size: 45vh;
   mix-blend-mode: exclusion;
-  animation: puls 1.5s ease infinite;
+  animation: puls 2.5s ease infinite;
    transform: perspective(1000px) scale3d(1, 1, 1) translateZ(100px) /*rotate3d(0deg, 0deg, 0deg) */;
 }
 
@@ -119,7 +32,7 @@ input[type='range']:disabled::-moz-range-thumb {
     transform: perspective(1000px) scale3d(1, 1, 1) translateZ(100px) /*rotate3d(0deg, 0deg, 0deg)*/ ;
   }
   50% {
-    transform: perspective(1000px) scale3d(1, 1, 2) translateZ(100px) /*rotate3d(360deg, 360deg, 360deg)*/ ;
+    transform: perspective(1000px) scale3d(1, 1, 2.5) translateZ(100px) /*rotate3d(360deg, 360deg, 360deg)*/ ;
   }
   to {
      transform: perspective(1000px) scale3d(1, 1, 1) translateZ(100px) /*rotate3d(0deg, 0deg, 0deg)*/ ; 
@@ -128,9 +41,9 @@ input[type='range']:disabled::-moz-range-thumb {
 
 .fire-video {
   position: absolute;
-  top: 178px;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%);
+  transform: translate(-50%, -50%);
   object-position: center;
   object-fit: cover;
   max-inline-size: 100%;
