@@ -160,6 +160,37 @@ cube.addEventListener('mouseup', () => {
 });
 
 
+// Обработчик события начала касания
+cube.addEventListener('touchstart', (e) => {
+  // Отменяем стандартное поведение события
+  e.preventDefault();
+  // Получаем данные о касании
+  const touch = e.touches[0];
+  // Сохраняем начальные координаты касания
+  startX = touch.clientX;
+  startY = touch.clientY;
+});
+
+// Обработчик события перемещения касания
+cube.addEventListener('touchmove', (e) => {
+  // Отменяем стандартное поведение события
+  e.preventDefault();
+  // Получаем данные о касании
+  const touch = e.touches[0];
+  // Вычисляем изменение позиции касания
+  const deltaX = touch.clientX - startX;
+  const deltaY = touch.clientY - startY;
+  // Обновляем начальные координаты касания
+  startX = touch.clientX;
+  startY = touch.clientY;
+  // Получаем текущие значения вращения куба
+  const rotateX = parseFloat(cube.style.getPropertyValue('--cube-rotate-x')) || 0;
+  const rotateY = parseFloat(cube.style.getPropertyValue('--cube-rotate-y')) || 0;
+  // Применяем изменения к вращению куба
+  cube.style.setProperty('--cube-rotate-x', `${rotateX + deltaY}deg`);
+  cube.style.setProperty('--cube-rotate-y', `${rotateY + deltaX}deg`);
+});
+
 // Обработчик события отпускания пальца на сенсорном устройстве
 cube.addEventListener('touchend', () => {
   // Задаем максимальное значение скорости вращения
@@ -167,14 +198,6 @@ cube.addEventListener('touchend', () => {
   // Ограничиваем скорость вращения
   rotationSpeedX = Math.max(Math.min(rotationSpeedX, maxRotationSpeed), -maxRotationSpeed);
   rotationSpeedY = Math.max(Math.min(rotationSpeedY, maxRotationSpeed), -maxRotationSpeed);
-  // Сбрасываем флаг в значение false
-  isDragging = false;
-});
-// Обработчик события отпускания пальца на сенсорном устройстве
-cube.addEventListener('touchend', () => {
-  // Сохраняем текущую скорость вращения куба после отпускания пальца
-  rotationSpeedX = (rotationSpeedX || 0) + Math.random() * 2 - 1;
-  rotationSpeedY = (rotationSpeedY || 0) + Math.random() * 2 - 1;
   // Сбрасываем флаг в значение false
   isDragging = false;
 });
