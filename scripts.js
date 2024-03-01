@@ -1,19 +1,3 @@
-document.addEventListener('DOMContentLoaded', function() {
-  const cube = document.querySelector('.cube');
-  const rangeX = document.querySelector('input[name="cube-rotate-x"]');
-  const rangeY = document.querySelector('input[name="cube-rotate-y"]');
-
-  function rotateCube() {
-      const rotateXValue = rangeX.value;
-      const rotateYValue = rangeY.value;
-      cube.style.setProperty('--cube-rotate-x', `${rotateXValue}deg`);
-      cube.style.setProperty('--cube-rotate-y', `${rotateYValue}deg`);
-  }
-
-  rangeX.addEventListener('input', rotateCube);
-  rangeY.addEventListener('input', rotateCube);
-});
-
 
 // Получаем элемент куба
 const cube = document.querySelector('.cube');
@@ -176,10 +160,45 @@ cube.addEventListener('mouseup', () => {
 });
 
 // Обработчик события отпускания пальца на сенсорном устройстве
+// Обработчик события отпускания пальца на сенсорном устройстве
 cube.addEventListener('touchend', () => {
-  // Сохраняем текущую скорость вращения куба после отпускания пальца
-  rotationSpeedX = (rotationSpeedX || 0) + Math.random() * 2 - 1;
-  rotationSpeedY = (rotationSpeedY || 0) + Math.random() * 2 - 1;
+  // Задаем максимальное значение скорости вращения
+  const maxRotationSpeed = 5;
+  // Ограничиваем скорость вращения
+  rotationSpeedX = Math.max(Math.min(rotationSpeedX, maxRotationSpeed), -maxRotationSpeed);
+  rotationSpeedY = Math.max(Math.min(rotationSpeedY, maxRotationSpeed), -maxRotationSpeed);
   // Сбрасываем флаг в значение false
   isDragging = false;
+});
+// cube.addEventListener('touchend', () => {
+//   // Сохраняем текущую скорость вращения куба после отпускания пальца
+//   rotationSpeedX = (rotationSpeedX || 0) + Math.random() * 2 - 1;
+//   rotationSpeedY = (rotationSpeedY || 0) + Math.random() * 2 - 1;
+//   // Сбрасываем флаг в значение false
+//   isDragging = false;
+// });
+
+
+// КНОПКА  ПАДЕНИЯ МЯЧИКА
+const fallButton = document.querySelector('.fall-button');
+const view = document.querySelector('.view');
+
+fallButton.addEventListener('click', () => {
+  view.classList.add('falling');
+});
+
+view.addEventListener('animationend', () => {
+  view.classList.remove('falling');
+});
+
+
+// КНОПКА ПУЛЬСАЦИЯ
+const pulseButton = document.querySelector('.pulse-button');
+const viewPulse = document.querySelector('.view-pulse');
+
+pulseButton.addEventListener('click', () => {
+  viewPulse.classList.toggle('pulse');
+});
+viewPulse.addEventListener('animationend', () => {
+  viewPulse.classList.remove('pulse');
 });

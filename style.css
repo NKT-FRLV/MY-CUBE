@@ -18,24 +18,36 @@ body {
   display: grid;
   place-items: center;
   padding: 60px;
-  overflow: hidden;
   background-color: transparent;
   transform-style: preserve-3d;
-  min-block-size: 45vh;
-  mix-blend-mode: exclusion;
-  animation: puls 2.5s ease infinite;
-   transform: perspective(1000px) scale3d(1, 1, 1) translateZ(100px) /*rotate3d(0deg, 0deg, 0deg) */;
+  min-block-size: 28vh;
+  mix-blend-mode: color;
+  transform: perspective(800px) scale3d(1, 1, 1) translateZ(0) /*rotate3d(0deg, 0deg, 0deg) */;
+}
+
+.view.pulse {
+  animation: puls 3s ease;
 }
 
 @keyframes puls {
   from {
-    transform: perspective(1000px) scale3d(1, 1, 1) translateZ(100px) /*rotate3d(0deg, 0deg, 0deg)*/ ;
+    transform: perspective(800px) scale3d(1, 1, 1) translateZ(0)/*rotate3d(0deg, 0deg, 0deg)*/ ;
   }
+
+  25% {
+    transform: perspective(800px) scale3d(1, 1, 3) translateZ(100px)/*rotate3d(360deg, 360deg, 360deg)*/ ;
+  }
+
   50% {
-    transform: perspective(1000px) scale3d(1, 1, 2.5) translateZ(100px) /*rotate3d(360deg, 360deg, 360deg)*/ ;
-  }
+      transform: perspective(800px) scale3d(1, 1, 0.5) translateZ(0)/*rotate3d(0deg, 0deg, 0deg)*/ ;
+    }
+
+  75% {
+      transform: perspective(800px) scale3d(1, 1, 3) translateZ(100px)/*rotate3d(360deg, 360deg, 360deg)*/ ;
+    }
+
   to {
-     transform: perspective(1000px) scale3d(1, 1, 1) translateZ(100px) /*rotate3d(0deg, 0deg, 0deg)*/ ; 
+     transform: perspective(800px) scale3d(1, 1, 1) translateZ(0)/*rotate3d(0deg, 0deg, 0deg)*/ ; 
   }
 }
 
@@ -51,4 +63,46 @@ body {
   border-radius: 40px;
   opacity: 0.5;
   box-shadow: 10px 10px 15px 15px #000, -10px -10px 15px 15px #000;
+}
+
+.side-bar {
+  position: absolute;
+  z-index: 10;
+  inset-inline-start: 1%;
+  inset-block-start: 20%;
+  display: grid;
+  gap: 10px;
+  place-content: center;
+  block-size: 40vh;
+  inline-size: 10vw;
+  border-radius: 40px;
+}
+
+.button {
+  padding: 20px 40px;
+  background-color: rgba(59, 10, 108, 0.5);
+  color: #fff;
+  border-radius: 40px;
+}
+
+@keyframes fallAndBounce {
+  0% {
+    transform: translateY(0) scaleY(1);
+  }
+  25% {
+    transform: translateY(34vh) scaleY(0.55);
+  }
+  50% {
+    transform: translateY(0) scaleY(1.2);
+  }
+  75% {
+    transform: translateY(30vh) scaleY(0.75);
+  }
+  100% {
+    transform: translateY(0) scaleY(1);
+  }
+}
+
+.view.falling {
+  animation: fallAndBounce 1.1s ease;
 }

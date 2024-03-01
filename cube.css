@@ -3,7 +3,7 @@
   transform-origin: center center calc(var(--size) / -2);
   width: var(--size);
   height: var(--size);
-  transform: rotateX(var(--cube-rotate-x)) rotateY(var(--cube-rotate-y));
+  transform: perspective(800px) rotateX(var(--cube-rotate-x)) rotateY(var(--cube-rotate-y));
   transform-style: preserve-3d;
 }
 
@@ -13,6 +13,7 @@
   place-items: center;
   width: var(--size);
   height: var(--size);
+  border: 1px solid #000;
   transform-origin: center;
   backface-visibility: hidden;
   user-select: none;
