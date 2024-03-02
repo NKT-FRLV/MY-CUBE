@@ -23,18 +23,19 @@ cube.addEventListener('touchstart', startDragging);
 
 // Функция для начала перемещения
 function startDragging(e) {
+  e.preventDefault(); // Предотвращаем стандартное действие браузера
   isDragging = true;
   startX = e.clientX || e.touches[0].clientX;
   startY = e.clientY || e.touches[0].clientY;
   document.addEventListener('mousemove', dragCube);
-  document.addEventListener('touchmove', dragCube);
+  document.addEventListener('touchmove', dragCube, { passive: false }); // Пассивный режим выключен
   document.addEventListener('mouseup', stopDragging);
   document.addEventListener('touchend', stopDragging);
 }
 
 // Функция для перемещения куба
 function dragCube(e) {
-  e.preventDefault(); // Предотвращаем скроллинг страницы
+  e.preventDefault(); // Предотвращаем стандартное действие браузера
   if (isDragging) {
     const currentX = e.clientX || e.touches[0].clientX;
     const currentY = e.clientY || e.touches[0].clientY;
@@ -98,7 +99,6 @@ pulseButton.addEventListener('click', () => {
 view.addEventListener('animationend', () => {
   view.classList.remove('pulse');
 });
-
 
 
 // // Получаем элемент куба
