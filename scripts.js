@@ -179,15 +179,22 @@ cube.addEventListener('touchmove', (e) => {
   cube.style.setProperty('--cube-rotate-y', `${rotateY + deltaX}deg`);
 });
 
-// Обработчик события отпускания пальца на сенсорном устройстве
+// // Обработчик события отпускания пальца на сенсорном устройстве
+// cube.addEventListener('touchend', () => {
+//   // Задаем максимальное значение скорости вращения
+//   const maxRotationSpeed = 5;
+//   // Ограничиваем скорость вращения
+//   rotationSpeedX = Math.max(Math.min(rotationSpeedX, maxRotationSpeed), -maxRotationSpeed);
+//   rotationSpeedY = Math.max(Math.min(rotationSpeedY, maxRotationSpeed), -maxRotationSpeed);
+//   // Сбрасываем флаг в значение false
+//   isDragging = false;
+// });
+
 cube.addEventListener('touchend', () => {
-  // Задаем максимальное значение скорости вращения
-  const maxRotationSpeed = 5;
-  // Ограничиваем скорость вращения
-  rotationSpeedX = Math.max(Math.min(rotationSpeedX, maxRotationSpeed), -maxRotationSpeed);
-  rotationSpeedY = Math.max(Math.min(rotationSpeedY, maxRotationSpeed), -maxRotationSpeed);
   // Сбрасываем флаг в значение false
   isDragging = false;
+  // Запускаем интервальную функцию для замедления вращения
+  decelerateInterval = setInterval(decelerateCube, updateInterval);
 });
 
 
