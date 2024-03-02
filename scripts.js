@@ -19,7 +19,7 @@ const maxRotationSpeed = 5;
 
 // Обработчик события нажатия кнопки мыши или касания пальцем
 cube.addEventListener('mousedown', startDragging);
-cube.addEventListener('touchstart', startDragging);
+// cube.addEventListener('touchstart', startDragging);
 
 // Функция для начала перемещения
 function startDragging(e) {
@@ -28,7 +28,7 @@ function startDragging(e) {
   startX = e.clientX || e.touches[0].clientX;
   startY = e.clientY || e.touches[0].clientY;
   document.addEventListener('mousemove', dragCube);
-  document.addEventListener('touchmove', dragCube, { passive: false }); // Пассивный режим выключен
+  // document.addEventListener('touchmove', dragCube, { passive: false }); // Пассивный режим выключен
   document.addEventListener('mouseup', stopDragging);
   document.addEventListener('touchend', stopDragging);
 }
@@ -56,7 +56,7 @@ function stopDragging() {
   isDragging = false;
   decelerateInterval = setInterval(decelerateCube, 16);
   document.removeEventListener('mousemove', dragCube);
-  document.removeEventListener('touchmove', dragCube);
+  // document.removeEventListener('touchmove', dragCube);
 }
 
 // Функция для обновления скорости вращения куба
