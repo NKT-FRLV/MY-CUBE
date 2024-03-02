@@ -24,6 +24,8 @@ function startDragging(e) {
   startY = e.clientY;
   document.addEventListener('mousemove', dragCube);
   document.addEventListener('mouseup', stopDragging);
+  // Добавляем класс для отключения анимации во время перетаскивания
+  cube.classList.add('dragging');
 }
 
 // Функция для перетаскивания куба
@@ -45,6 +47,8 @@ function dragCube(e) {
 function stopDragging() {
   isDragging = false;
   document.removeEventListener('mousemove', dragCube);
+  // Удаляем класс для включения анимации
+  cube.classList.remove('dragging');
 }
 
 // Функция для обновления скорости вращения куба
@@ -73,6 +77,7 @@ document.addEventListener('touchend', stopRotation);
 // Функция для остановки вращения куба
 function stopRotation() {
   isDragging = false;
+  // Запускаем замедление вращения
   decelerateInterval = setInterval(decelerateCube, 16);
 }
 

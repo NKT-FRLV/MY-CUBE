@@ -5,6 +5,13 @@
   height: var(--size);
   transform: perspective(800px) rotateX(var(--cube-rotate-x)) rotateY(var(--cube-rotate-y));
   transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+}
+
+/* CSS стили для куба во время перетаскивания */
+.dragging {
+  /* Отключаем анимацию */
+  transition: none;
 }
 
 .side {
