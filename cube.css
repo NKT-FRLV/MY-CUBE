@@ -22,7 +22,7 @@
   height: var(--size);
   border: 1px solid #000;
   transform-origin: center;
-  backface-visibility: hidden;
+  /* backface-visibility: hidden; */
   user-select: none;
   cursor: pointer;
 }
