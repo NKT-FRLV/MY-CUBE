@@ -9,6 +9,7 @@ body {
   font-weight: bolder;
   background-image: url(./images/cover-image.png);
   min-block-size: 100vh;
+  max-height: 100vh;
 }
 
 .view {
