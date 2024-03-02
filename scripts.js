@@ -159,18 +159,6 @@ cube.addEventListener('mouseup', () => {
   isDragging = false;
 });
 
-
-// Обработчик события начала касания
-cube.addEventListener('touchstart', (e) => {
-  // Отменяем стандартное поведение события
-  e.preventDefault();
-  // Получаем данные о касании
-  const touch = e.touches[0];
-  // Сохраняем начальные координаты касания
-  startX = touch.clientX;
-  startY = touch.clientY;
-});
-
 // Обработчик события перемещения касания
 cube.addEventListener('touchmove', (e) => {
   // Отменяем стандартное поведение события
@@ -219,11 +207,10 @@ view.addEventListener('animationend', () => {
 
 // КНОПКА ПУЛЬСАЦИЯ
 const pulseButton = document.querySelector('.pulse-button');
-const viewPulse = document.querySelector('.view-pulse');
 
 pulseButton.addEventListener('click', () => {
-  viewPulse.classList.toggle('pulse');
+  view.classList.toggle('pulse');
 });
 viewPulse.addEventListener('animationend', () => {
-  viewPulse.classList.remove('pulse');
+  view.classList.remove('pulse');
 });
