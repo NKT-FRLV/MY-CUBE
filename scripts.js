@@ -50,36 +50,7 @@ document.addEventListener('mouseup', () => {
 });
 
 
-// Обработчик события начала касания
-cube.addEventListener('touchstart', (e) => {
-  // Отменяем стандартное поведение события
-  e.preventDefault();
-  // Получаем данные о касании
-  const touch = e.touches[0];
-  // Сохраняем начальные координаты касания
-  startX = touch.clientX;
-  startY = touch.clientY;
-});
 
-// Обработчик события перемещения касания
-cube.addEventListener('touchmove', (e) => {
-  // Отменяем стандартное поведение события
-  e.preventDefault();
-  // Получаем данные о касании
-  const touch = e.touches[0];
-  // Вычисляем изменение позиции касания
-  const deltaX = touch.clientX - startX;
-  const deltaY = touch.clientY - startY;
-  // Обновляем начальные координаты касания
-  startX = touch.clientX;
-  startY = touch.clientY;
-  // Получаем текущие значения вращения куба
-  const rotateX = parseFloat(cube.style.getPropertyValue('--cube-rotate-x')) || 0;
-  const rotateY = parseFloat(cube.style.getPropertyValue('--cube-rotate-y')) || 0;
-  // Применяем изменения к вращению куба
-  cube.style.setProperty('--cube-rotate-x', `${rotateX + deltaY}deg`);
-  cube.style.setProperty('--cube-rotate-y', `${rotateY + deltaX}deg`);
-});
 
 
 // Коэффициент замедления (можно регулировать)
@@ -143,13 +114,6 @@ cube.addEventListener('mousemove', (e) => {
   }
 });
 
-// Обработчик события перемещения касания
-cube.addEventListener('touchmove', (e) => {
-  // Получаем данные о касании
-  const touch = e.touches[0];
-  updateRotationSpeed(touch);
-});
-
 // Обработчик события отпускания кнопки мыши
 cube.addEventListener('mouseup', () => {
   // Сохраняем текущую скорость вращения куба после отпускания мыши
@@ -159,25 +123,7 @@ cube.addEventListener('mouseup', () => {
   isDragging = false;
 });
 
-// Обработчик события перемещения касания
-cube.addEventListener('touchmove', (e) => {
-  // Отменяем стандартное поведение события
-  e.preventDefault();
-  // Получаем данные о касании
-  const touch = e.touches[0];
-  // Вычисляем изменение позиции касания
-  const deltaX = touch.clientX - startX;
-  const deltaY = touch.clientY - startY;
-  // Обновляем начальные координаты касания
-  startX = touch.clientX;
-  startY = touch.clientY;
-  // Получаем текущие значения вращения куба
-  const rotateX = parseFloat(cube.style.getPropertyValue('--cube-rotate-x')) || 0;
-  const rotateY = parseFloat(cube.style.getPropertyValue('--cube-rotate-y')) || 0;
-  // Применяем изменения к вращению куба
-  cube.style.setProperty('--cube-rotate-x', `${rotateX + deltaY}deg`);
-  cube.style.setProperty('--cube-rotate-y', `${rotateY + deltaX}deg`);
-});
+
 
 // // Обработчик события отпускания пальца на сенсорном устройстве
 // cube.addEventListener('touchend', () => {
@@ -189,17 +135,6 @@ cube.addEventListener('touchmove', (e) => {
 //   // Сбрасываем флаг в значение false
 //   isDragging = false;
 // });
-
-// Обработчик события отпускания пальца на сенсорном устройстве
-cube.addEventListener('touchend', () => {
-  // Сбрасываем флаг в значение false
-  isDragging = false;
-  // Запускаем интервальную функцию для замедления вращения
-  decelerateInterval = setInterval(decelerateCube, updateInterval);
-  // Сохраняем текущую скорость вращения после отпускания пальца
-  rotationSpeedX = (rotationSpeedX || 0);
-  rotationSpeedY = (rotationSpeedY || 0);
-});
 
 
 
