@@ -190,11 +190,15 @@ cube.addEventListener('touchmove', (e) => {
 //   isDragging = false;
 // });
 
+// Обработчик события отпускания пальца на сенсорном устройстве
 cube.addEventListener('touchend', () => {
   // Сбрасываем флаг в значение false
   isDragging = false;
   // Запускаем интервальную функцию для замедления вращения
   decelerateInterval = setInterval(decelerateCube, updateInterval);
+  // Сохраняем текущую скорость вращения после отпускания пальца
+  rotationSpeedX = (rotationSpeedX || 0);
+  rotationSpeedY = (rotationSpeedY || 0);
 });
 
 
