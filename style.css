@@ -8,7 +8,7 @@ body {
   font-size: 36px;
   font-weight: bolder;
   background-image: url(./images/cover-image.png);
-  min-block-size: 100vh;
+  block-size: 100vh;
 }
 
 
