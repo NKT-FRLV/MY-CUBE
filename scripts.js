@@ -34,6 +34,7 @@ function startDragging(e) {
 
 // Функция для перемещения куба
 function dragCube(e) {
+  e.preventDefault(); // Предотвращаем скроллинг страницы
   if (isDragging) {
     const currentX = e.clientX || e.touches[0].clientX;
     const currentY = e.clientY || e.touches[0].clientY;
