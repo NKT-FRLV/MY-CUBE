@@ -203,6 +203,52 @@ cube.addEventListener('touchend', () => {
 
 
 
+// Создаем экземпляр Hammer.js и привязываем его к элементу куба
+const mc = new Hammer(cube);
+
+// Функция для вращения куба
+function rotateCube(deltaX, deltaY) {
+  // Получаем текущие значения вращения куба
+  const rotateX = parseFloat(cube.style.getPropertyValue('--cube-rotate-x')) || 0;
+  const rotateY = parseFloat(cube.style.getPropertyValue('--cube-rotate-y')) || 0;
+  // Применяем изменения к вращению куба
+  cube.style.setProperty('--cube-rotate-x', `${rotateX + deltaY}deg`);
+  cube.style.setProperty('--cube-rotate-y', `${rotateY + deltaX}deg`);
+}
+
+// Функция для плавного замедления вращения куба
+function decelerateCube() {
+  // Замедляем скорость вращения куба
+  rotationSpeedX *= 0.95;
+  rotationSpeedY *= 0.95;
+  // Если скорость стала очень маленькой, останавливаем замедление
+  if (Math.abs(rotationSpeedX) < 0.1 && Math.abs(rotationSpeedY) < 0.1) {
+    clearInterval(decelerateInterval);
+  } else {
+    // Вращаем куб
+    rotateCube(rotationSpeedX, rotationSpeedY);
+  }
+}
+
+// Слушаем событие swipe и обрабатываем его
+mc.on("swipe", function(ev) {
+  // Получаем данные о свайпе
+  const deltaX = ev.deltaX;
+  const deltaY = ev.deltaY;
+
+  // Вращаем куб на основе смещения свайпа
+  rotateCube(deltaX, deltaY);
+
+  // Сохраняем скорость вращения куба после свайпа
+  rotationSpeedX = deltaX * 0.1;
+  rotationSpeedY = deltaY * 0.1;
+
+  // Запускаем замедление вращения куба
+  decelerateInterval = setInterval(decelerateCube, 16);
+});
+
+
+
 // КНОПКА  ПАДЕНИЯ МЯЧИКА
 const fallButton = document.querySelector('.fall-button');
 const view = document.querySelector('.view');
