@@ -78,6 +78,34 @@ function decelerateCube() {
   }
 }
 
+// Обработчик события начала касания
+cube.addEventListener('touchstart', (e) => {
+  // Сохраняем начальные координаты касания
+  startX = e.touches[0].clientX;
+  startY = e.touches[0].clientY;
+});
+
+// Обработчик события перемещения пальца по кубу
+cube.addEventListener('touchmove', (e) => {
+  // Получаем текущие координаты касания
+  const currentX = e.touches[0].clientX;
+  const currentY = e.touches[0].clientY;
+  
+  // Вычисляем изменение координат
+  const deltaX = currentX - startX;
+  const deltaY = currentY - startY;
+
+  // Применяем изменения к вращению куба
+  rotateCube(deltaX, deltaY);
+
+  // Обновляем начальные координаты касания
+  startX = currentX;
+  startY = currentY;
+
+  // Отменяем стандартное поведение браузера при событии touchmove
+  e.preventDefault();
+});
+
 // КНОПКА ПАДЕНИЯ МЯЧИКА
 const fallButton = document.querySelector('.fall-button');
 const view = document.querySelector('.view');
