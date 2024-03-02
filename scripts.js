@@ -1,10 +1,10 @@
 // Получаем элемент куба
 const cube = document.querySelector('.cube');
 
-// Флаг для отслеживания состояния мыши
+// Флаг для отслеживания состояния перемещения
 let isDragging = false;
 
-// Переменные для хранения начальных координат мыши
+// Переменные для хранения начальных координат
 let startX, startY;
 
 // Переменные для хранения скорости вращения куба
@@ -12,27 +12,35 @@ let rotationSpeedX = 0;
 let rotationSpeedY = 0;
 
 // Коэффициент замедления
-const decelerationRate = 0.99;
+const decelerationRate = 0.95;
 
-// Обработчик события нажатия кнопки мыши
+// Максимальная скорость вращения куба
+const maxRotationSpeed = 5;
+
+// Обработчик события нажатия кнопки мыши или касания пальцем
 cube.addEventListener('mousedown', startDragging);
+cube.addEventListener('touchstart', startDragging);
 
-// Функция для начала перетаскивания
+// Функция для начала перемещения
 function startDragging(e) {
   isDragging = true;
-  startX = e.clientX;
-  startY = e.clientY;
+  startX = e.clientX || e.touches[0].clientX;
+  startY = e.clientY || e.touches[0].clientY;
   document.addEventListener('mousemove', dragCube);
+  document.addEventListener('touchmove', dragCube);
   document.addEventListener('mouseup', stopDragging);
+  document.addEventListener('touchend', stopDragging);
 }
 
-// Функция для перетаскивания куба
+// Функция для перемещения куба
 function dragCube(e) {
   if (isDragging) {
-    const deltaX = e.clientX - startX;
-    const deltaY = e.clientY - startY;
-    startX = e.clientX;
-    startY = e.clientY;
+    const currentX = e.clientX || e.touches[0].clientX;
+    const currentY = e.clientY || e.touches[0].clientY;
+    const deltaX = currentX - startX;
+    const deltaY = currentY - startY;
+    startX = currentX;
+    startY = currentY;
     const rotateX = parseFloat(cube.style.getPropertyValue('--cube-rotate-x')) || 0;
     const rotateY = parseFloat(cube.style.getPropertyValue('--cube-rotate-y')) || 0;
     cube.style.setProperty('--cube-rotate-x', `${rotateX + deltaY}deg`);
@@ -41,10 +49,12 @@ function dragCube(e) {
   }
 }
 
-// Функция для завершения перетаскивания
+// Функция для завершения перемещения
 function stopDragging() {
   isDragging = false;
+  decelerateInterval = setInterval(decelerateCube, 16);
   document.removeEventListener('mousemove', dragCube);
+  document.removeEventListener('touchmove', dragCube);
 }
 
 // Функция для обновления скорости вращения куба
@@ -65,30 +75,6 @@ function decelerateCube() {
     clearInterval(decelerateInterval);
   }
 }
-
-// Обработчик события отпускания кнопки мыши или касания
-document.addEventListener('mouseup', stopRotation);
-document.addEventListener('touchend', stopRotation);
-
-// Функция для остановки вращения куба
-function stopRotation() {
-  isDragging = false;
-  decelerateInterval = setInterval(decelerateCube, 16);
-}
-
-// Создаем экземпляр Hammer.js и привязываем его к элементу куба
-const mc = new Hammer(cube);
-
-// Слушаем событие свайпа и обрабатываем его
-mc.on("pan", function(ev) {
-  const deltaX = ev.deltaX;
-  const deltaY = ev.deltaY;
-  const rotateX = parseFloat(cube.style.getPropertyValue('--cube-rotate-x')) || 0;
-  const rotateY = parseFloat(cube.style.getPropertyValue('--cube-rotate-y')) || 0;
-  cube.style.setProperty('--cube-rotate-x', `${rotateX + deltaY}deg`);
-  cube.style.setProperty('--cube-rotate-y', `${rotateY + deltaX}deg`);
-  updateRotationSpeed(deltaX, deltaY);
-});
 
 // КНОПКА ПАДЕНИЯ МЯЧИКА
 const fallButton = document.querySelector('.fall-button');
