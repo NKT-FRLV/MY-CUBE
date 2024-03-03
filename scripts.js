@@ -17,7 +17,7 @@ const decelerationRate = 0.95;
 // Максимальная скорость вращения куба
 const maxRotationSpeed = 5;
 
-// Обработчик события нажатия кнопки мыши или касания пальцем
+// Обработчик события начала перемещения
 cube.addEventListener('mousedown', startDragging);
 cube.addEventListener('touchstart', startDragging);
 
@@ -43,10 +43,7 @@ function dragCube(e) {
     const deltaY = currentY - startY;
     startX = currentX;
     startY = currentY;
-    const rotateX = parseFloat(cube.style.getPropertyValue('--cube-rotate-x')) || 0;
-    const rotateY = parseFloat(cube.style.getPropertyValue('--cube-rotate-y')) || 0;
-    cube.style.setProperty('--cube-rotate-x', `${rotateX + deltaY}deg`);
-    cube.style.setProperty('--cube-rotate-y', `${rotateY + deltaX}deg`);
+    rotateCube(deltaX, deltaY);
     updateRotationSpeed(deltaX, deltaY);
   }
 }
@@ -69,42 +66,19 @@ function updateRotationSpeed(deltaX, deltaY) {
 function decelerateCube() {
   rotationSpeedX *= decelerationRate;
   rotationSpeedY *= decelerationRate;
-  const rotateX = parseFloat(cube.style.getPropertyValue('--cube-rotate-x')) || 0;
-  const rotateY = parseFloat(cube.style.getPropertyValue('--cube-rotate-y')) || 0;
-  cube.style.setProperty('--cube-rotate-x', `${rotateX + rotationSpeedX}deg`);
-  cube.style.setProperty('--cube-rotate-y', `${rotateY + rotationSpeedY}deg`);
+  rotateCube(rotationSpeedX, rotationSpeedY);
   if (Math.abs(rotationSpeedX) < 0.1 && Math.abs(rotationSpeedY) < 0.1) {
     clearInterval(decelerateInterval);
   }
 }
 
-// Обработчик события начала касания
-cube.addEventListener('touchstart', (e) => {
-  // Сохраняем начальные координаты касания
-  startX = e.touches[0].clientX;
-  startY = e.touches[0].clientY;
-});
-
-// Обработчик события перемещения пальца по кубу
-cube.addEventListener('touchmove', (e) => {
-  // Получаем текущие координаты касания
-  const currentX = e.touches[0].clientX;
-  const currentY = e.touches[0].clientY;
-  
-  // Вычисляем изменение координат
-  const deltaX = currentX - startX;
-  const deltaY = currentY - startY;
-
-  // Применяем изменения к вращению куба
-  rotateCube(deltaX, deltaY);
-
-  // Обновляем начальные координаты касания
-  startX = currentX;
-  startY = currentY;
-
-  // Отменяем стандартное поведение браузера при событии touchmove
-  e.preventDefault();
-});
+// Функция для вращения куба
+function rotateCube(deltaX, deltaY) {
+  const rotateX = parseFloat(cube.style.getPropertyValue('--cube-rotate-x')) || 0;
+  const rotateY = parseFloat(cube.style.getPropertyValue('--cube-rotate-y')) || 0;
+  cube.style.setProperty('--cube-rotate-x', `${rotateX + deltaY}deg`);
+  cube.style.setProperty('--cube-rotate-y', `${rotateY + deltaX}deg`);
+}
 
 // КНОПКА ПАДЕНИЯ МЯЧИКА
 const fallButton = document.querySelector('.fall-button');

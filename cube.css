@@ -20,7 +20,8 @@
   place-items: center;
   width: var(--size);
   height: var(--size);
-  border: 1px solid #000;
+  border: 3px solid #000;
+  border-collapse: collapse;
   transform-origin: center;
   /* backface-visibility: hidden; */
   user-select: none;
