@@ -6,6 +6,7 @@
   transform: perspective(800px) rotateX(var(--cube-rotate-x)) rotateY(var(--cube-rotate-y));
   transform-style: preserve-3d;
   transition: transform 0.3s ease;
+  will-change: transform;;
 }
 
 /* CSS стили для куба во время перетаскивания */
@@ -65,6 +66,8 @@
   inset-block-start: 0;
   inset-inline-start: 0;
 }
+
+
 
 .back {
   background-color: rgb(109 193 253 / 0.8);

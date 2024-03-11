@@ -14,9 +14,6 @@ let rotationSpeedY = 0;
 // Коэффициент замедления
 const decelerationRate = 0.95;
 
-// Максимальная скорость вращения куба
-const maxRotationSpeed = 5;
-
 // Обработчик события начала перемещения
 cube.addEventListener('mousedown', startDragging);
 cube.addEventListener('touchstart', startDragging);
@@ -51,7 +48,6 @@ function dragCube(e) {
 // Функция для завершения перемещения
 function stopDragging() {
   isDragging = false;
-  decelerateInterval = setInterval(decelerateCube, 16);
   document.removeEventListener('mousemove', dragCube);
   document.removeEventListener('touchmove', dragCube);
 }
@@ -62,23 +58,36 @@ function updateRotationSpeed(deltaX, deltaY) {
   rotationSpeedY = deltaY;
 }
 
-// Функция для замедления вращения куба
-function decelerateCube() {
-  rotationSpeedX *= decelerationRate;
-  rotationSpeedY *= decelerationRate;
-  rotateCube(rotationSpeedX, rotationSpeedY);
-  if (Math.abs(rotationSpeedX) < 0.1 && Math.abs(rotationSpeedY) < 0.1) {
-    clearInterval(decelerateInterval);
-  }
-}
-
 // Функция для вращения куба
 function rotateCube(deltaX, deltaY) {
+  // Получаем текущие значения углов вращения
   const rotateX = parseFloat(cube.style.getPropertyValue('--cube-rotate-x')) || 0;
   const rotateY = parseFloat(cube.style.getPropertyValue('--cube-rotate-y')) || 0;
-  cube.style.setProperty('--cube-rotate-x', `${rotateX + deltaY}deg`);
-  cube.style.setProperty('--cube-rotate-y', `${rotateY + deltaX}deg`);
+
+  // Вычисляем новые значения углов вращения
+  const newRotateX = rotateX + deltaY;
+  const newRotateY = rotateY + deltaX;
+
+  // Применяем новые значения углов вращения куба
+  cube.style.setProperty('--cube-rotate-x', `${newRotateX}deg`);
+  cube.style.setProperty('--cube-rotate-y', `${newRotateY}deg`);
 }
+
+// Функция для анимации куба с использованием requestAnimationFrame
+function animateCube() {
+  // Замедляем скорость вращения куба
+  rotationSpeedX *= decelerationRate;
+  rotationSpeedY *= decelerationRate;
+
+  // Применяем скорость вращения куба
+  rotateCube(rotationSpeedX, rotationSpeedY);
+
+  // Вызываем requestAnimationFrame для следующего кадра анимации
+  requestAnimationFrame(animateCube);
+}
+
+// Начинаем анимацию куба
+animateCube();
 
 // КНОПКА ПАДЕНИЯ МЯЧИКА
 const fallButton = document.querySelector('.fall-button');
@@ -100,4 +109,34 @@ pulseButton.addEventListener('click', () => {
 });
 view.addEventListener('animationend', () => {
   view.classList.remove('pulse');
+});
+
+
+// КНОПКА FIRE-BOLL
+const fireBollButton = document.querySelector('.fire-button');
+const fireVideo = document.querySelector('.fire-video');
+
+fireBollButton.addEventListener('click', () => {
+  fireVideo.classList.toggle('fire');
+});
+fireVideo.addEventListener('animationend', () => {
+  fireVideo.classList.remove('fire');
+});
+
+// КНОПКА stars
+const starsButton = document.querySelector('.star-button');
+const svgStar = document.querySelector('.gran-svg');
+
+starsButton.addEventListener('click', () => {
+  svgStar.classList.add('stars');
+  
+  // Устанавливаем таймер
+  const timer = setTimeout(() => {
+      svgStar.classList.remove('stars');
+  }, 10000);
+  
+  starsButton.addEventListener("click", () => {
+      // Если кнопка была нажата до истечения таймера, то отменяем его
+      clearTimeout(timer);
+  });
 });

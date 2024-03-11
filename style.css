@@ -15,6 +15,15 @@ body {
   block-size: 100vh;
 }
 
+body::after {
+  content: "";
+  mix-blend-mode: plus-lighter;
+  position: fixed;
+  inset: 0;
+  background-color: #000;
+  opacity: 0.6
+}
+
 
 
 .view {
@@ -23,12 +32,14 @@ body {
 
   display: grid;
   place-items: center;
+  z-index: 2;
   padding: 60px;
   background-color: transparent;
   transform-style: preserve-3d;
+  mix-blend-mode: hard-light;
   min-block-size: 28vh;
-  mix-blend-mode: color;
-  transform: perspective(800px) scale3d(1, 1, 1) translateZ(0) /*rotate3d(0deg, 0deg, 0deg) */;
+  
+  transform: perspective(2000px) scale3d(1, 1, 1) translateZ(0) /*rotate3d(0deg, 0deg, 0deg) */;
 }
 
 .view.pulse {
@@ -53,11 +64,11 @@ body {
     }
 
   to {
-     transform: perspective(800px) scale3d(1, 1, 1) translateZ(0)/*rotate3d(0deg, 0deg, 0deg)*/ ; 
+     transform: perspective(1000px) scale3d(1, 1, 1) translateZ(0)/*rotate3d(0deg, 0deg, 0deg)*/ ; 
   }
 }
 
-/* .fire-video {
+.fire-video {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -67,9 +78,29 @@ body {
   max-inline-size: 100%;
   min-block-size: 80vh;
   border-radius: 40px;
-  opacity: 0.5;
+  pointer-events: none;
+  opacity: 0;
   box-shadow: 10px 10px 15px 15px #000, -10px -10px 15px 15px #000;
-} */
+}
+
+.fire-video.fire {
+  animation: fire 5s ease-in-out;
+}
+
+@keyframes fire {
+from {
+  opacity: 0;
+}
+10% {
+  opacity: 0.5;
+}
+90%{
+  opacity: 0.5;
+}
+to {
+  opacity: 0;
+}
+}
 
 .side-bar {
   position: absolute;
@@ -78,15 +109,137 @@ body {
   inset-block-start: 20%;
   display: grid;
   gap: 10px;
+  padding-block: 20px;
+  border: 1px solid #fff;
+  background-image: repeating-conic-gradient(#f43b29 0 15deg, #09a3ea 15deg 30deg);
+  background-size: 100%;
   place-content: center;
-  block-size: 40vh;
+  block-size: fit-content ;
   inline-size: 10vw;
   border-radius: 40px;
+  opacity: 0.8;
+}
+
+.button {
+  width: 100px;
+  height: 100px;
+  background-color: rgba(59, 10, 108);
+  color: #fff;
+  /* appearance: none; */
+  box-shadow: inset 5px 5px 0 0 rgb(255 255 255 / 0.25), 5px 5px 0 0 rgb(0 0 0 / 0.35);
+  
+  border: 1px solid #000;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.button:active {
+  outline: none;
+  transform: scale(0.95);
+  box-shadow: inset 7px 7px 0 0 rgb(0 0 0 / 0.35);
+}
+
+
+
+@keyframes fallAndBounce {
+  0% {
+    transform: perspective(800px) scale3d(1, 1, 1) translateZ(0) translateY(0) scaleX(1) scaleY(1);
+  }
+  25% {
+    transform: perspective(800px) scale3d(1, 1, 1) translateZ(0) translateY(32vh) scaleX(1.3) scaleY(0.55);
+  }
+  50% {
+    transform: perspective(800px) scale3d(1, 1, 1) translateZ(0) translateY(0) scaleX(0.8) scaleY(1);
+  }
+  75% {
+    transform: perspective(800px) scale3d(1, 1, 1) translateZ(0) translateY(28vh) scale(1.3) scaleY(0.75);
+  }
+  100% {
+    transform: perspective(800px) scale3d(1, 1, 1) translateZ(0) translateY(0) scaleX(1) scaleY(1);
+  }
+}
+
+.view.falling {
+  animation: fallAndBounce 1.1s ease;
+}
+
+.svg-3d-conteiner {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  transform-style: preserve-3d;
+  perspective: 800px;
+  overflow: hidden;
+}
+
+.gran-svg {
+  /* background-color: #000;
+  opacity: 0.8; */
+  width: 1500px;
+  height: 1200px;
+  transform: perspective(700px) scale(1.8) rotateX(35deg) rotateY(8deg) rotateZ(55deg) translateX(-426px) translateY(-136px);
+}
+
+.gran-svg.stars {
+  animation: rotate 10s linear alternate;
+}
+
+@keyframes rotate {
+  from {
+    transform: perspective(700px) scale(1.8) rotateX(35deg) rotateY(8deg) rotateZ(55deg) translateX(-426px) translateY(-136px);
+  }
+
+  to {
+    transform: perspective(700px) scale(1.8) rotateX(35deg) rotateY(8deg) rotateZ(100deg) translateX(-424px) translateY(-126px);
+  }
+}
+
+.svg-path {
+  stroke-width: 2px;
+  stroke-dashoffset: 30000;
+  stroke: transparent;
+  /* mix-blend-mode: lighten; */
+  /* stroke: gold; */
+  transition: stroke-dashoffset 30s linear;
+  animation: desapearing 0.6s ease-out alternate infinite;
+}
+
+.svg-path_1{
+  stroke-dasharray: 3 800 3 300 3 400 3 1200 3 2000 3 300;
+}
+
+.svg-path_2{
+  stroke-dasharray: 3 1600 3 400 3 2000 3 500 3 250;
+}
+  
+.svg-path_3{
+  stroke-dasharray: 3 2000 3 200 3 700 3 400 3 1200;
+}
+
+@keyframes desapearing {
+
+  from {
+    opacity: 0.05;
+  }
+
+  to {
+    opacity: 1;
+  }
+
+}
+
+.gran-svg.stars .svg-path {
+  stroke-dashoffset: 0;
+  stroke: gold;
 }
 
 @media (width <= 450px) {
   body {
-    block-size: 100dvw;
+    block-size: 100dvh;
+    font-size: 28px;
   }
   .side-bar {
     transform: translateX(-50%);
@@ -96,36 +249,12 @@ body {
     gap: 10px;
     align-items:center;
     justify-content: center;
-    block-size: 10vh;
-    inline-size: 80vw;
+    block-size: fit-content;
+    inline-size: 90vw;
   } 
-}
-
-.button {
-  padding: 20px 40px;
-  background-color: rgba(59, 10, 108, 0.5);
-  color: #fff;
-  border-radius: 40px;
-}
-
-@keyframes fallAndBounce {
-  0% {
-    transform: translateY(0) scaleX(1) scaleY(1);
+  .button {
+    font-size: 10px;
+    max-width: 85px;
+    max-height: 85px;
   }
-  25% {
-    transform: translateY(32vh) scaleX(1.3) scaleY(0.55);
-  }
-  50% {
-    transform: translateY(0) scaleX(0.8) scaleY(1);
-  }
-  75% {
-    transform: translateY(28vh) scale(1.3) scaleY(0.75);
-  }
-  100% {
-    transform: translateY(0) scaleX(1) scaleY(1);
-  }
-}
-
-.view.falling {
-  animation: fallAndBounce 1.1s ease;
 }
