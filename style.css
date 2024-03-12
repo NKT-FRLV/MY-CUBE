@@ -3,6 +3,7 @@
 }
 
 body {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,18 +12,19 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-size: 36px;
   font-weight: bolder;
-  background-image: url(./images/cover-image.png);
-  block-size: 100vh;
+  background-image: url(./images/cover-image.png), linear-gradient(#000, #000);
+  /* isolation: isolate; */
+  block-size: 100dvh;
 }
 
-body::after {
+/* body::after {
   content: "";
   mix-blend-mode: plus-lighter;
   position: fixed;
   inset: 0;
   background-color: #000;
   opacity: 0.6
-}
+} */
 
 
 

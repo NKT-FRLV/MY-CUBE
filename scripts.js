@@ -29,7 +29,7 @@ function startDragging(e) {
   startY = e.clientY || e.touches[0].clientY;
   startZ = e.clientX || e.touches[0].clientZ; // Сохраняем начальную координату по оси Z
   document.addEventListener('mousemove', dragCube);
-  document.addEventListener('touchmove', dragCube, { passive: false }); // Пассивный режим выключен
+  document.addEventListener('touchmove', dragCube); // Пассивный режим выключен
   document.addEventListener('mouseup', stopDragging);
   document.addEventListener('touchend', stopDragging);
 }
