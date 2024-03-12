@@ -29,7 +29,7 @@ function startDragging(e) {
   startY = e.clientY || e.touches[0].clientY;
   startZ = e.clientX || e.touches[0].clientZ; // Сохраняем начальную координату по оси Z
   document.addEventListener('mousemove', dragCube);
-  document.addEventListener('touchmove', dragCube); // Пассивный режим выключен
+  document.addEventListener('touchmove', dragCube, { passive: false }); // Пассивный режим выключен
   document.addEventListener('mouseup', stopDragging);
   document.addEventListener('touchend', stopDragging);
 }
@@ -40,13 +40,11 @@ function dragCube(e) {
   if (isDragging) {
     const currentX = e.clientX || e.touches[0].clientX;
     const currentY = e.clientY || e.touches[0].clientY;
-    const currentZ = e.clientX || e.touches[0].clientZ; // Получаем текущую координату по оси Z
-    const deltaX = currentX - startX;
-    const deltaY = startY - currentY; // Изменено на startY - currentY
-    const deltaZ = currentZ - startZ; // Вычисляем изменение координат по оси Z
+    const deltaX = startX - currentX;
+    const deltaY = startY - currentY;
+    const deltaZ = Math.sqrt(deltaX * deltaX + deltaY * deltaY); // Используем евклидово расстояние для определения глубины
     startX = currentX;
     startY = currentY;
-    startZ = currentZ; // Обновляем начальную координату по оси Z
     rotateCube(deltaX, deltaY, deltaZ); // Передаем изменение координаты по оси Z
     updateRotationSpeed(deltaX, deltaY, deltaZ); // Обновляем скорость вращения
   }
