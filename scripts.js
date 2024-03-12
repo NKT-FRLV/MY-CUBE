@@ -40,9 +40,9 @@ function dragCube(e) {
   if (isDragging) {
     const currentX = e.clientX || e.touches[0].clientX;
     const currentY = e.clientY || e.touches[0].clientY;
-    const deltaX = startX - currentX;
+    const deltaX = currentX - startX;
     const deltaY = startY - currentY;
-    const deltaZ = Math.sqrt(deltaX * deltaX + deltaY * deltaY); // Используем евклидово расстояние для определения глубины
+    const deltaZ = Math.sqrt((deltaX * deltaX + deltaY * deltaY) / 100); // Используем евклидово расстояние (ДЕЛЕННОЕ НА 100 для уменьшения эффекта) для определения глубины
     startX = currentX;
     startY = currentY;
     rotateCube(deltaX, deltaY, deltaZ); // Передаем изменение координаты по оси Z
@@ -122,15 +122,26 @@ view.addEventListener('animationend', () => {
 });
 
 
-// КНОПКА FIRE-BOLL
-const fireBollButton = document.querySelector('.fire-button');
+
+// КНОПКА FIREBALL
+const fireBallButton = document.querySelector('.fire-button');
 const fireVideo = document.querySelector('.fire-video');
 
-fireBollButton.addEventListener('click', () => {
-  fireVideo.classList.toggle('fire');
+fireBallButton.addEventListener('click', () => {
+  if (fireVideo.classList.contains('fire')) {
+    fireVideo.classList.remove('fire');
+    fireVideo.style.display = 'none'; // Устанавливаем стиль display в none при повторном нажатии
+  } else {
+    fireVideo.classList.add('fire');
+    fireVideo.style.display = 'block'; // Устанавливаем стиль display в блок при включении анимации
+    fireVideo.currentTime = 0; // Устанавливаем текущее время видео в начало
+    fireVideo.play(); // Запускаем воспроизведение видео
+  }
 });
+
 fireVideo.addEventListener('animationend', () => {
   fireVideo.classList.remove('fire');
+  fireVideo.style.display = 'none'; // Устанавливаем стиль display в none при завершении анимации
 });
 
 // КНОПКА stars
