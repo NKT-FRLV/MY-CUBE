@@ -3,10 +3,10 @@
   transform-origin: center center calc(var(--size) / -2);
   width: var(--size);
   height: var(--size);
-  transform: perspective(800px) rotateX(var(--cube-rotate-x)) rotateY(var(--cube-rotate-y));
+  transform: perspective(800px) rotateX(var(--cube-rotate-x)) rotateY(var(--cube-rotate-y)) rotateZ(var(--cube-rotate-z));
   transform-style: preserve-3d;
   transition: transform 0.3s ease;
-  will-change: transform;;
+  will-change: transform;
 }
 
 /* CSS стили для куба во время перетаскивания */

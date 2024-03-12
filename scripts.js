@@ -5,11 +5,14 @@ const cube = document.querySelector('.cube');
 let isDragging = false;
 
 // Переменные для хранения начальных координат
-let startX, startY;
+// Переменные для хранения начальных координат
+let startX, startY, startZ; // Добавляем переменную startZ
+
 
 // Переменные для хранения скорости вращения куба
 let rotationSpeedX = 0;
 let rotationSpeedY = 0;
+let rotationSpeedZ = 0;
 
 // Коэффициент замедления
 const decelerationRate = 0.95;
@@ -24,6 +27,7 @@ function startDragging(e) {
   isDragging = true;
   startX = e.clientX || e.touches[0].clientX;
   startY = e.clientY || e.touches[0].clientY;
+  startZ = e.clientX || e.touches[0].clientZ; // Сохраняем начальную координату по оси Z
   document.addEventListener('mousemove', dragCube);
   document.addEventListener('touchmove', dragCube, { passive: false }); // Пассивный режим выключен
   document.addEventListener('mouseup', stopDragging);
@@ -36,12 +40,15 @@ function dragCube(e) {
   if (isDragging) {
     const currentX = e.clientX || e.touches[0].clientX;
     const currentY = e.clientY || e.touches[0].clientY;
+    const currentZ = e.clientX || e.touches[0].clientZ; // Получаем текущую координату по оси Z
     const deltaX = currentX - startX;
-    const deltaY = currentY - startY;
+    const deltaY = startY - currentY; // Изменено на startY - currentY
+    const deltaZ = currentZ - startZ; // Вычисляем изменение координат по оси Z
     startX = currentX;
     startY = currentY;
-    rotateCube(deltaX, deltaY);
-    updateRotationSpeed(deltaX, deltaY);
+    startZ = currentZ; // Обновляем начальную координату по оси Z
+    rotateCube(deltaX, deltaY, deltaZ); // Передаем изменение координаты по оси Z
+    updateRotationSpeed(deltaX, deltaY, deltaZ); // Обновляем скорость вращения
   }
 }
 
@@ -53,24 +60,28 @@ function stopDragging() {
 }
 
 // Функция для обновления скорости вращения куба
-function updateRotationSpeed(deltaX, deltaY) {
-  rotationSpeedX = deltaX;
-  rotationSpeedY = deltaY;
+function updateRotationSpeed(deltaX, deltaY, deltaZ) {
+  rotationSpeedX += deltaX;
+  rotationSpeedY += deltaY;
+  rotationSpeedZ += deltaZ; // Учитываем изменение координаты по оси Z
 }
 
 // Функция для вращения куба
-function rotateCube(deltaX, deltaY) {
-  // Получаем текущие значения углов вращения
+function rotateCube(deltaX, deltaY, deltaZ) {
+  // Текущие значения углов вращения
   const rotateX = parseFloat(cube.style.getPropertyValue('--cube-rotate-x')) || 0;
   const rotateY = parseFloat(cube.style.getPropertyValue('--cube-rotate-y')) || 0;
+  const rotateZ = parseFloat(cube.style.getPropertyValue('--cube-rotate-z')) || 0;
 
-  // Вычисляем новые значения углов вращения
-  const newRotateX = rotateX + deltaY;
-  const newRotateY = rotateY + deltaX;
+  // Вычисление новых значений углов вращения
+  const newRotateX = rotateX + deltaY * 0.1; // Умножаем на коэффициент скорости
+  const newRotateY = rotateY + deltaX * 0.1; // Умножаем на коэффициент скорости
+  const newRotateZ = rotateZ + deltaZ * 0.1; // Умножаем на коэффициент скорости
 
-  // Применяем новые значения углов вращения куба
+  // Применяем новые значения углов вращения
   cube.style.setProperty('--cube-rotate-x', `${newRotateX}deg`);
   cube.style.setProperty('--cube-rotate-y', `${newRotateY}deg`);
+  cube.style.setProperty('--cube-rotate-z', `${newRotateZ}deg`);
 }
 
 // Функция для анимации куба с использованием requestAnimationFrame
@@ -78,9 +89,10 @@ function animateCube() {
   // Замедляем скорость вращения куба
   rotationSpeedX *= decelerationRate;
   rotationSpeedY *= decelerationRate;
+  rotationSpeedZ *= decelerationRate;
 
   // Применяем скорость вращения куба
-  rotateCube(rotationSpeedX, rotationSpeedY);
+  rotateCube(rotationSpeedX, rotationSpeedY, rotationSpeedZ);
 
   // Вызываем requestAnimationFrame для следующего кадра анимации
   requestAnimationFrame(animateCube);

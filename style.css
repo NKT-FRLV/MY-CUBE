@@ -29,6 +29,7 @@ body::after {
 .view {
   --cube-rotate-x: 0deg;
   --cube-rotate-y: 0deg;
+  --cube-rotate-z: 0deg;
 
   display: grid;
   place-items: center;
@@ -127,7 +128,7 @@ to {
   color: #fff;
   /* appearance: none; */
   box-shadow: inset 5px 5px 0 0 rgb(255 255 255 / 0.25), 5px 5px 0 0 rgb(0 0 0 / 0.35);
-  
+  user-select: none;
   border: 1px solid #000;
   border-radius: 50%;
   cursor: pointer;
