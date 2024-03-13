@@ -78,6 +78,7 @@ body {
   mix-blend-mode: hard-light;
   min-block-size: min-content;
   min-inline-size: min-content;
+  filter: drop-shadow(16px 170px 26px rgba(0, 0, 0, 0.8));
   transform: perspective(2000px) scale3d(1, 1, 1) translateZ(0) /*rotate3d(0deg, 0deg, 0deg) */;
 }
 
