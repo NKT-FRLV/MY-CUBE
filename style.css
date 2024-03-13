@@ -26,13 +26,49 @@ body {
   opacity: 0.6
 } */
 
+.shadow-of-view {
+  position: relative;
+  min-block-size: 45vh;
+  aspect-ratio: 1/1;
+  display: grid;
+  place-items: center;
+  box-shadow: inset 20px 20px 40px rgb(255 255 255 / 0.25),
+    inset -20px -20px 40px rgb(255 255 255 / 0.25),10px 10px 30px rgb(255 255 255 / 0.25),
+    -20px -20px 30px rgb(255 255 255 / 0.25), 10px 10px 80px rgb(255 255 255 / 0.25),
+    -20px -20px 80px rgb(255 255 255 / 0.25),inset 10px 10px 60px rgb(255 255 255 / 0.25),
+    inset -20px -20px 60px rgb(255 255 255 / 0.25);
+  border-radius: 50%;
+  /* animation: shadow-blink 0.7s ease infinite alternate; */
+}
 
+/* @keyframes shadow-blink {
+  0%,
+  18%,
+  22%,
+  25%,
+  53%,
+  57%,
+  100% { box-shadow: inset 20px 20px 40px rgb(255 255 255 / 0.25),
+    inset -20px -20px 40px rgb(255 255 255 / 0.25),10px 10px 30px rgb(255 255 255 / 0.25),
+    -20px -20px 30px rgb(255 255 255 / 0.25), 10px 10px 80px rgb(255 255 255 / 0.25),
+    -20px -20px 80px rgb(255 255 255 / 0.25),inset 10px 10px 60px rgb(255 255 255 / 0.25),
+    inset -20px -20px 60px rgb(255 255 255 / 0.25);
+  }
+
+  20%,
+  24%,
+  55% {
+    box-shadow: inset 20px 20px 20px rgb(255 255 255 / 0.25),
+            inset -20px -20px 20px rgb(255 255 255 / 0.25);
+  }
+} */
 
 .view {
   --cube-rotate-x: 0deg;
   --cube-rotate-y: 0deg;
   --cube-rotate-z: 0deg;
-
+  position: absolute;
+  inset: 0;
   display: grid;
   place-items: center;
   z-index: 2;
@@ -40,7 +76,8 @@ body {
   background-color: transparent;
   transform-style: preserve-3d;
   mix-blend-mode: hard-light;
-  min-block-size: 28vh;
+  min-block-size: min-content;
+  min-inline-size: min-content;
   transform: perspective(2000px) scale3d(1, 1, 1) translateZ(0) /*rotate3d(0deg, 0deg, 0deg) */;
 }
 
