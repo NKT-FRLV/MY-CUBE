@@ -21,7 +21,10 @@
   place-items: center;
   width: var(--size);
   height: var(--size);
-  border: 3px solid #000;
+  border: 50px solid #000;
+  border-image: url(./images/floral_frame_border.png);
+  border-image-slice:  25%;
+  border-image-outset: 20px;
   border-collapse: collapse;
   transform-origin: center;
   /* backface-visibility: hidden; */
