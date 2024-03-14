@@ -19,7 +19,6 @@
 }
 
 .side {
-  
   position: absolute;
   display: grid;
   place-items: center;
@@ -28,7 +27,8 @@
   border-image: url(./images/floral_frame_border.png) 32% / 74px / 21px;
   border-collapse: collapse;
   /* backface-visibility: hidden; */
-  user-select: none;
+  touch-action: none;
+  will-change: transform;
   cursor: pointer;
 }
 
