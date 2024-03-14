@@ -1,0 +1,50 @@
+@media (width <= 900px) {
+  body {
+    block-size: 100dvh;
+    font-size: 28px;
+  }
+
+  .side-bar {
+    inset-inline-start: 2vw;
+    inset-block-start: 5%;
+    inline-size: 85px;
+  } 
+  .button {
+    font-size: 10px;
+    max-width: 70px;
+    max-height: 70px;
+  }
+
+  .gran-svg {
+    width: 1100px;
+    height: 1100px;
+  }
+
+  .view {
+    scale: 0.8;
+    translate: -40px -35px;
+  }
+
+  .shadow-of-view {
+    min-block-size: calc(350px * 0.8);
+  }
+}
+
+@media (width <= 400px) { 
+  .side-bar {
+    transform: translateX(-50%);
+    inset-inline-start: 50%;
+    inset-block-start: 3%;
+    display: flex;
+    gap: 10px;
+    align-items:center;
+    justify-content: center;
+    block-size: 13vh;
+    inline-size: 90vw;
+  } 
+  .button {
+    font-size: 10px;
+    max-width: 85px;
+    max-height: 85px;
+  }
+}
