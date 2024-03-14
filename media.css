@@ -45,4 +45,12 @@
     block-size: 85px;
     inline-size: 90vw;
   } 
+
+  .fire-video {
+    rotate: -90deg;
+    translate: -27% 47%;
+    inline-size: 100vh;
+    block-size: 100vw;
+   
+  }
 }
