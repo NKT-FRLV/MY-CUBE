@@ -20,15 +20,12 @@
 
 .side {
   position: absolute;
-  display: grid;
-  place-items: center;
   min-width: 100%;
   min-height: 100%;
-  border-image: url(./images/floral_frame_border.png) 32% / 74px / 21px;
-  /* border-collapse: collapse; */
+  border-image: url(./images/floral_frame_PNG12.png) 32% / 74px / 21px;
+  border-collapse: collapse;
   /* backface-visibility: hidden; */
-  touch-action: none;
-  will-change: transform;
+  /* touch-action: none; */
 }
 
 .top {
