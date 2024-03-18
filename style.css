@@ -15,7 +15,7 @@ body {
   background-image: url(./images/cover-image.png), linear-gradient(#000, #000);
   /* isolation: isolate; */
   overflow: hidden;
-  block-size: 100dvh;
+  block-size: 100vh;
 }
 
 /* body::after {

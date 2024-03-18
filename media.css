@@ -1,6 +1,5 @@
 @media (width <= 900px) {
   body {
-    block-size: 100dvh;
     font-size: 28px;
   }
 
@@ -25,7 +24,7 @@
   }
 
   .view {
-    scale: 0.8;
+    scale: 0.85;
   }
 
   /* .shadow-of-view {
