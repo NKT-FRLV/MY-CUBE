@@ -73,8 +73,8 @@ body {
   background-color: transparent;
   /* transform-style: preserve-3d; */
   perspective-origin: center;
-  min-block-size: min-content;
-  min-inline-size: min-content;
+  min-block-size: fit-content;
+  min-inline-size: fit-content;
   mix-blend-mode: hard-light;
   filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.9));
   transform: /*perspective(1000px)*/ scale3d(1, 1, 1); 
