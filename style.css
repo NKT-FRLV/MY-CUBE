@@ -71,13 +71,13 @@ body {
   z-index: 2;
   padding: 60px;
   background-color: transparent;
-  transform-style: preserve-3d;
+  /* transform-style: preserve-3d; */
   perspective-origin: center;
-  mix-blend-mode: hard-light;
   min-block-size: min-content;
   min-inline-size: min-content;
+  mix-blend-mode: hard-light;
   filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.9));
-  transform: perspective(1000px) scale3d(1, 1, 1);
+  transform: /*perspective(1000px)*/ scale3d(1, 1, 1); 
 }
 
 .view.pulse {
@@ -86,23 +86,23 @@ body {
 
 @keyframes puls {
   from {
-    transform: perspective(1000px) scale3d(1, 1, 1);
+    transform: /*perspective(1000px)*/ scale3d(1, 1, 1);
   }
 
   25% {
-    transform: perspective(1000px) scale3d(1.5, 1.5, 1);
+    transform: /*perspective(1000px)*/ scale3d(1.5, 1.5, 1);
   }
 
   50% {
-      transform: perspective(1000px) scale3d(1, 1, 1);
+      transform: /*perspective(1000px)*/ scale3d(1, 1, 1);
     }
 
   75% {
-      transform: perspective(1000px) scale3d(1.5, 1.5, 1);
+      transform: /*perspective(1000px)*/ scale3d(1.5, 1.5, 1);
     }
 
   to {
-     transform: perspective(1000px) scale3d(1, 1, 1); 
+     transform: /*perspective(1000px)*/ scale3d(1, 1, 1); 
   }
 }
 
@@ -181,19 +181,19 @@ to {
 
 @keyframes fallAndBounce {
   0% {
-    transform: perspective(800px) scale3d(1, 1, 1) translateZ(0)  scaleX(1) scaleY(1);
+    transform: /*perspective(1000px)*/ scale3d(1, 1, 1) translateZ(0)  scaleX(1) scaleY(1);
   }
   25% {
-    transform: perspective(800px) scale3d(1, 1, 1) translateY(32vh) translateZ(0) scaleX(1.3) scaleY(0.75);
+    transform: /*perspective(1000px)*/ scale3d(1, 1, 1) translateY(32vh) translateZ(0) scaleX(1.3) scaleY(0.75);
   }
   50% {
-    transform: perspective(800px) scale3d(1, 1, 1) translateZ(0) scaleX(0.8) scaleY(1);
+    transform: /*perspective(1000px)*/ scale3d(1, 1, 1) translateZ(0) scaleX(0.8) scaleY(1);
   }
   75% {
-    transform: perspective(800px) scale3d(1, 1, 1) translateY(28vh) translateZ(0) scale(1.3) scaleY(0.75);
+    transform: /*perspective(1000px)*/ scale3d(1, 1, 1) translateY(28vh) translateZ(0) scale(1.3) scaleY(0.75);
   }
   100% {
-    transform: perspective(800px) scale3d(1, 1, 1) translateZ(0) scaleX(1) scaleY(1);
+    transform: /*perspective(1000px)*/ scale3d(1, 1, 1) translateZ(0) scaleX(1) scaleY(1);
   }
 }
 
