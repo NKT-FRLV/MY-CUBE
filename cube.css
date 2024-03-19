@@ -22,6 +22,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
+  inset: 0;
   border-image: url(./images/border-5996973_640.png) 32% / 74px / 21px;
   /* url(./images/border-5996973_640.png) 29% / 7px / 15px ШТРИХИ ВОКРУГ!! */
   /* url(./images/border-5996973_640.png) 54% / 123px / 19px ПРИКОЛЬНЫЕ УГОЛКИ */
@@ -29,17 +30,17 @@
   /* url(./images/border-5996973_640.png) 116% / 126px / 18px КРУТОЙ ОРНАМЕНТ. + REPEAT */
   /* backface-visibility: hidden; */
   /* touch-action: none; */
-  animation: borderImg 8s linear alternate infinite;
+  animation: borderImg 10s ease-in-out alternate infinite;
 }
 
 @keyframes borderImg {
-  from {
+  0%, 20% {
     border-image: url(./images/border-5996973_640.png) 32% / 74px / 21px;
   }
-  50% {
+  40%, 70% {
     border-image: url(./images/border-5996973_640.png) 32% / 126px / 21px;
   }
-  to {
+  90%, 100% {
     border-image: url(./images/border-5996973_640.png) 116% / 126px / 18px;
   }
 }
