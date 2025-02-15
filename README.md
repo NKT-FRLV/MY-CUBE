@@ -1,6 +1,6 @@
 # 🎲 MY-CUBE – 3D Cube with Pure CSS  
 
-🔗 **Live Demo:** [MY-CUBE](https://mi-viejo-amigo.github.io/MY-CUBE)  
+🔗 **Live Demo:** [MY-CUBE](https://NKT-FRLV.github.io/MY-CUBE)  
 
 ---
 
@@ -37,10 +37,10 @@ cd MY-CUBE
 Simply open index.html in your browser – no additional setup required.
 
 ## **Author**  
-👨‍💻 **Developed by [Nikita Frolov](https://github.com/mi-viejo-amigo)**  
+👨‍💻 **Developed by [Nikita Frolov](https://github.com/NKT-FRLV)**  
 
 📩 **Contact me:**  
-- **GitHub:** [mi-viejo-amigo](https://github.com/mi-viejo-amigo)  
+- **GitHub:** [mi-viejo-amigo](https://github.com/NKT-FRLV)  
 - **LinkedIn:** [LinkedIn Profile](https://www.linkedin.com/in/nktfrlv)  
 - **Email:** [Letter me](mailto:nkt.frlv7@yandex.ru)  
 
